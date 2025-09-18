@@ -1,3 +1,5 @@
 # Telegram Bot WLD
 
-Ini adalah bot Telegram untuk projek saya.
+Ini adalah bot Telegram untuk projek claim worldcoin percuma
+
+
