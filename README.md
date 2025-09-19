@@ -1,6 +1,11 @@
-# _CRYPTORIAN TELEBOT_
+# _`Cryptorian-Telebot`_
 
-Ini adalah **_bot telegram_** projek claim **_worldcoin_** percuma dari worldapps dan cashout **_hata wallet_** malaysia ke local bank malaysia
+Bot Telegram menggunakan Go + Markdown JSON.  
+Memaparkan panduan seperti **Claim**, **Hata Wallet**, **Cashout**, dan nota keselamatan berdasarkan `markdown.json`, claim
+free worldcoin, transfer pada wallet hata serta cashout ke local bank.
+
+
+## 🛠 Struktur Projek
 
 
 
