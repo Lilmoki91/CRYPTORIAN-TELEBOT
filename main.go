@@ -1,3 +1,4 @@
+
 // ==================================
 // 🔐⛓️ Block 1 - import & structure json
 // ==================================
@@ -7,7 +8,7 @@ package main
 import (
     "encoding/json"
     "fmt"
-    "io/ioutil"
+    "io" // Gantikan ioutil dengan io
     "log"
     "os"
     "strings"
@@ -44,7 +45,6 @@ type MarkdownData struct {
     SecurityNotes         Section `json:"security_notes"`
 }
 
-
 // ==================================
 // 🔐⛓️ Block 2 - Load Json
 // ==================================
@@ -57,7 +57,7 @@ func LoadMarkdownData(path string) (*MarkdownData, error) {
     }
     defer file.Close()
 
-    bytes, err := ioutil.ReadAll(file)
+    bytes, err := io.ReadAll(file) // Gantikan ioutil dengan io
     if err != nil {
         return nil, err
     }
@@ -69,7 +69,6 @@ func LoadMarkdownData(path string) (*MarkdownData, error) {
 
     return &data, nil
 }
-
 
 // ===================================
 // 🔐⛓️ Block 3 - Helper Format markdown v2
@@ -113,7 +112,6 @@ func FormatSection(section Section) string {
     return sb.String()
 }
 
-
 // ================================
 // 🔐⛓️ Block 4 - Main Function
 // ================================
@@ -135,7 +133,7 @@ func main() {
     // Load JSON
     data, err := LoadMarkdownData("config/markdown.json")
     if err != nil {
-        log.Fatal("Error load JSON:", err)
+        log.Fatalf("Error load JSON: %v", err) // Guna log.Fatalf untuk error
     }
 
     u := tgbotapi.NewUpdate(0)
@@ -163,7 +161,6 @@ func main() {
         }
     }
 }
-
 
 // ================================
 // 🔐⛓️ Block 5 - Handler
@@ -225,7 +222,4 @@ func handleCallback(bot *tgbotapi.BotAPI, callback *tgbotapi.CallbackQuery) {
         confirm := tgbotapi.NewMessage(chatID, "✅ Semua mesej dipadam. Tekan /start untuk mula semula.")
         bot.Send(confirm)
     }
-}
-
-
-
+}           
