@@ -1,4 +1,4 @@
-# _`Cryptorian-Telebot`_
+## 🤖 _`Cryptorian-Telebot`_
 
 Bot Telegram menggunakan Go + Markdown JSON.  
 Memaparkan panduan seperti **Claim**, **Hata Wallet**, **Cashout**, dan nota keselamatan berdasarkan `markdown.json`, claim
