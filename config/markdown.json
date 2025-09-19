@@ -1,4 +1,4 @@
-{
+    {
   "worldcoin_registration": {
     "title": "Pendaftaran Worldcoin",
     "steps": [
@@ -114,7 +114,7 @@
       {
         "step": 2,
         "title": "Withdraw dari World App",
-        "desc": "Buka World App, pilih wallet, pilih coin Worldcoin, tekan menu 3 titik, pilih pengeluaran, pilih Aplikasi crypto dan lain-lain, pilih rangkaian Worldchain, paste alamat Hata Wallet, masukkan jumlah minimum 2 WLD",
+        "desc": "Buka World App, pilih wallet, pilih coin Worldcoin, tekan menu 3 titik, pilih pengeluaran, pilih Aplikasi crypto dan lain-lain, pilih rangkaian Worldchain, paste alamat Hata Wallet, masukkan jumlah dan lengkapkan transaksi.",
         "images": [
           "https://i.postimg.cc/BvTDWDS8/IMG-20250807-021022.jpg",
           "https://i.postimg.cc/T3Wg9FBJ/IMG-20250807-021202.jpg",
@@ -145,7 +145,7 @@
       ]
     }
   },
-"cashout_to_bank": {
+  "cashout_to_bank": {
     "title": "Jual Worldcoin dan Cashout ke Bank",
     "steps": [
       {
@@ -206,4 +206,4 @@
       "Simpan backup Google Drive untuk pulihkan wallet"
     ]
   }
-  
+}      
