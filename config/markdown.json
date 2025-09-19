@@ -1,4 +1,5 @@
-    {
+
+{
   "worldcoin_registration": {
     "title": "Pendaftaran Worldcoin",
     "steps": [
@@ -9,7 +10,8 @@
         "images": [
           "https://i.postimg.cc/43R0pXtT/Screenshot-2025-07-15-22-00-03-329-com-android-chrome.jpg",
           "https://i.postimg.cc/ry9qmYBm/Screenshot-2025-07-15-22-00-10-854-com-android-chrome.jpg"
-        ]
+        ],
+        "links": []
       },
       {
         "step": 2,
@@ -17,7 +19,8 @@
         "desc": "Pastikan kod 4RH0OTE diisi di ruangan referral.",
         "images": [
           "https://i.postimg.cc/qvNr1Bzh/IMG-20250715-192124-082.jpg"
-        ]
+        ],
+        "links": []
       },
       {
         "step": 3,
@@ -25,7 +28,8 @@
         "desc": "Guna Gmail atau nombor telefon untuk cipta wallet. Disyorkan guna kedua-dua untuk backup.",
         "images": [
           "https://i.postimg.cc/zvq57ng8/IMG-20250716-135244.jpg"
-        ]
+        ],
+        "links": []
       },
       {
         "step": 4,
@@ -33,7 +37,8 @@
         "desc": "Aktifkan untuk simpan kunci kriptografi (cryptographic key). Boleh pulih wallet jika tukar telefon.",
         "images": [
           "https://i.postimg.cc/763wSBbK/IMG-20250716-135530.jpg"
-        ]
+        ],
+        "links": []
       },
       {
         "step": 5,
@@ -42,7 +47,8 @@
         "images": [
           "https://i.postimg.cc/zXt5wHXY/IMG-20250715-192214-029.jpg",
           "https://i.postimg.cc/prkv6pf8/IMG-20250715-192233-142.jpg"
-        ]
+        ],
+        "links": []
       },
       {
         "step": 6,
@@ -50,9 +56,15 @@
         "desc": "Selepas verifikasi Orb, 50 WLD akan masuk ke World App Wallet",
         "images": [
           "https://i.postimg.cc/qvWTSf3m/Screenshot-2025-07-07-14-23-02-175-com-worldcoin.jpg"
-        ]
+        ],
+        "links": []
       }
-    ]
+    ],
+    "points": [],
+    "important": {
+      "title": "",
+      "notes": []
+    }
   },
   "hata_wallet_setup": {
     "title": "Pendaftaran dan Setup Hata Wallet",
@@ -77,7 +89,8 @@
         "images": [
           "https://i.postimg.cc/5N76BMJj/Screenshot-2025-07-16-20-52-20-126-com-hata-exchange.jpg",
           "https://i.postimg.cc/ZR9XHJDZ/IMG-20250716-203916-078.jpg"
-        ]
+        ],
+        "links": []
       },
       {
         "step": 3,
@@ -85,7 +98,8 @@
         "desc": "Lakukan pengesahan dengan gambar MyKad dan selfie wajah anda.",
         "images": [
           "https://i.postimg.cc/SsypG0bx/IMG-20250716-211507.jpg"
-        ]
+        ],
+        "links": []
       },
       {
         "step": 4,
@@ -93,9 +107,15 @@
         "desc": "Pengesahan dalam beberapa jam kerana Hata ialah wallet Web3 Blockchain.",
         "images": [
           "https://i.postimg.cc/SsypG0bx/IMG-20250716-211507.jpg"
-        ]
+        ],
+        "links": []
       }
-    ]
+    ],
+    "points": [],
+    "important": {
+      "title": "",
+      "notes": []
+    }
   },
   "withdraw_to_hata": {
     "title": "Withdraw Worldcoin ke Hata Wallet",
@@ -109,7 +129,8 @@
           "https://i.postimg.cc/XvMF8KzF/IMG-20250803-201936.jpg",
           "https://i.postimg.cc/XvRbXqXn/IMG-20250803-193909.jpg",
           "https://i.postimg.cc/vmVRRyhk/IMG-20250803-193408.jpg"
-        ]
+        ],
+        "links": []
       },
       {
         "step": 2,
@@ -124,7 +145,8 @@
           "https://i.postimg.cc/ZRYW1Msg/IMG-20250807-022925.jpg",
           "https://i.postimg.cc/4d8YZQr3/IMG-20250807-024315.jpg",
           "https://i.postimg.cc/vmt12shf/IMG-20250807-025354.jpg"
-        ]
+        ],
+        "links": []
       },
       {
         "step": 3,
@@ -133,9 +155,11 @@
         "images": [
           "https://i.postimg.cc/RZrNMFbw/IMG-20250807-033159.jpg",
           "https://i.postimg.cc/6QSM5gF7/IMG-20250807-051759.jpg"
-        ]
+        ],
+        "links": []
       }
     ],
+    "points": [],
     "important": {
       "title": "Penting",
       "notes": [
@@ -159,7 +183,8 @@
           "https://i.postimg.cc/rF4L2hTf/IMG-20250804-233951.jpg",
           "https://i.postimg.cc/h46qYkkJ/IMG-20250804-235142.jpg",
           "https://i.postimg.cc/tJKQV63d/IMG-20250804-233510.jpg"
-        ]
+        ],
+        "links": []
       },
       {
         "step": 2,
@@ -170,7 +195,8 @@
           "https://i.postimg.cc/X7sHzs4z/IMG-20250807-090620.jpg",
           "https://i.postimg.cc/L8hCKjs6/IMG-20250807-091158.jpg",
           "https://i.postimg.cc/bNyVg7cn/IMG-20250807-091953.jpg"
-        ]
+        ],
+        "links": []
       },
       {
         "step": 3,
@@ -184,9 +210,11 @@
           "https://i.postimg.cc/mZw8Pmzg/IMG-20250807-094314.jpg",
           "https://i.postimg.cc/wjtVbHW1/IMG-20250807-094811.jpg",
           "https://i.postimg.cc/GmZjWNNq/IMG-20250807-095201.jpg"
-        ]
+        ],
+        "links": []
       }
     ],
+    "points": [],
     "important": {
       "title": "Penting",
       "notes": [
@@ -199,11 +227,16 @@
   },
   "security_notes": {
     "title": "Nota Keselamatan",
+    "steps": [],
     "points": [
       "Jangan kongsikan kod verifikasi dengan orang lain",
       "Aktifkan 2FA (Google Authenticator)",
       "Pastikan notifikasi email aktif untuk pantau transaksi",
       "Simpan backup Google Drive untuk pulihkan wallet"
-    ]
+    ],
+    "important": {
+      "title": "",
+      "notes": []
+    }
   }
-}      
+}
