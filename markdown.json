@@ -1,0 +1,180 @@
+{
+  "worldcoin_registration_guide": {
+    "title": "Panduan Pendaftaran Worldcoin & Verifikasi",
+    "steps": [
+      {
+        "title": "Langkah 1️⃣: Daftar & Muat Turun World App",
+        "desc": "Gunakan pautan jemputan rasmi untuk bermula.\n\n🔗 Link: https://worldcoin.org/join/4RH0OTE\n🔢 Kod Jemputan: 4RH0OTE",
+        "images": [
+          "https://i.postimg.cc/43R0pXtT/Screenshot-2025-07-15-22-00-03-329-com-android-chrome.jpg",
+          "https://i.postimg.cc/ry9qmYBm/Screenshot-2025-07-15-22-00-10-854-com-android-chrome.jpg"
+        ]
+      },
+      {
+        "title": "Langkah 2️⃣: Masukkan Kod Jemputan",
+        "desc": "Pastikan kod `4RH0OTE` diisi di ruangan referral untuk melayakkan anda menerima bonus.",
+        "images": [
+          "https://i.postimg.cc/qvNr1Bzh/IMG-20250715-192124-082.jpg"
+        ]
+      },
+      {
+        "title": "Langkah 3️⃣: Pilih Kaedah Log Masuk",
+        "desc": "Gunakan akaun Gmail atau nombor telefon untuk mencipta wallet anda. Disyorkan untuk mengaktifkan kedua-duanya sebagai sandaran (backup).",
+        "images": [
+          "https://i.postimg.cc/zvq57ng8/IMG-20250716-135244.jpg"
+        ]
+      },
+      {
+        "title": "Langkah 4️⃣: Aktifkan Sandaran Google Drive",
+        "desc": "Ini adalah langkah keselamatan penting untuk menyimpan kunci kriptografi anda. Ia membolehkan anda memulihkan wallet jika anda bertukar telefon.",
+        "images": [
+          "https://i.postimg.cc/763wSBbK/IMG-20250716-135530.jpg"
+        ]
+      },
+      {
+        "title": "Langkah 5️⃣: Imbas Wajah di Lokasi Orb",
+        "desc": "Pergi ke lokasi Orb yang terdekat (biasanya di cawangan MyEG) untuk membuat imbasan biometrik wajah. Proses ini hanya perlu dilakukan sekali seumur hidup.",
+        "images": [
+          "https://i.postimg.cc/zXt5wHXY/IMG-20250715-192214-029.jpg",
+          "https://i.postimg.cc/prkv6pf8/IMG-20250715-192233-142.jpg"
+        ]
+      },
+      {
+        "title": "Langkah 6️⃣: Claim Worldcoin (WLD) Anda",
+        "desc": "Selepas pengesahan Orb berjaya, anda akan menerima geran WLD pertama anda (sekitar 50 WLD). World ID biometrik ini membezakan anda dari robot/AI dan membolehkan anda menerima UBI (Universal Basic Income) pada masa hadapan.",
+        "images": [
+          "https://i.postimg.cc/qvWTSf3m/Screenshot-2025-07-07-14-23-02-175-com-worldcoin.jpg"
+        ]
+      },
+      {
+        "title": "Langkah 7️⃣: Verifikasi Guna Pasport (Alternatif Orb)",
+        "desc": "Jika anda tidak dapat ke Orb, anda boleh membuat pengesahan menggunakan pasport bercip NFC.\n\n1. Buka World App → World ID → Verify with Passport (Beta).\n2. Pastikan telefon dan pasport anda mempunyai NFC.\n3. Ikut arahan untuk mengimbas pasport dan wajah anda.\n4. Setelah berjaya, anda boleh claim WLD tambahan.",
+        "images": [
+          "https://i.postimg.cc/59ZqkYnq/Screenshot-2025-08-03-13-20-34-930-com-worldcoin.jpg",
+          "https://i.postimg.cc/9fFGqGQV/Screenshot-2025-08-03-13-20-45-839-com-worldcoin.jpg",
+          "https://i.postimg.cc/63FRSgL5/Screenshot-2025-08-03-13-21-51-728-com-worldcoin.jpg"
+        ]
+      }
+    ],
+    "important": {
+      "title": "📌 Nota Penting",
+      "notes": [
+        "JANGAN kongsikan kod pengesahan atau akses Google Drive anda dengan sesiapa.",
+        "Tuntut (claim) geran WLD bulanan anda tepat pada masanya. Jika tidak, ia akan 'burn' (hilang).",
+        "Anda perlu mengimbas wajah anda (selfie) setiap kali membuat tuntutan bulanan."
+      ]
+    }
+  },
+  "hata_setup_guide": {
+    "title": "Panduan Lengkap Pendaftaran & Setup Hata Wallet",
+    "steps": [
+      {
+        "title": "Langkah 1️⃣: Muat Turun Aplikasi Hata",
+        "desc": "Gunakan pautan rasmi untuk mendaftar dan memuat turun aplikasi Hata Wallet.\n\n🔗 Pautan Daftar: https://hata.io/signup?ref=HDX8778\n🔗 Google Play: https://play.google.com/store/apps/details?id=com.hata.exchange",
+        "images": [
+          "https://i.postimg.cc/ZR9XHJDZ/IMG-20250716-203916-078.jpg",
+          "https://i.postimg.cc/tJT9t0GH/Screenshot-2025-07-20-05-40-31-011-com-android-vending.jpg"
+        ]
+      },
+      {
+        "title": "Langkah 2️⃣: Daftar Akaun Hata Wallet",
+        "desc": "Lengkapkan borang pendaftaran menggunakan emel dan cipta kata laluan yang kukuh.",
+        "images": [
+          "https://i.postimg.cc/5N76BMJj/Screenshot-2025-07-16-20-52-20-126-com-hata-exchange.jpg"
+        ]
+      },
+      {
+        "title": "Langkah 3️⃣: Sahkan Identiti (KYC)",
+        "desc": "Lakukan proses pengesahan identiti (Know Your Customer) dengan memuat naik gambar MyKad anda dan mengambil gambar swafoto (selfie).",
+        "images": [
+          "https://i.postimg.cc/SsypG0bx/IMG-20250716-211507.jpg"
+        ]
+      },
+      {
+        "title": "Langkah 4️⃣: Tunggu Kelulusan KYC",
+        "desc": "Pengesahan biasanya mengambil masa beberapa jam. Proses ini adalah mandatori kerana Hata merupakan platform aset digital yang dikawal selia.",
+        "images": [
+          "https://i.postimg.cc/SsypG0bx/IMG-20250716-211507.jpg"
+        ]
+      },
+      {
+        "title": "Langkah 5️⃣: Tambah Akaun Bank Anda",
+        "desc": "Sebelum boleh 'cashout', anda perlu menambah butiran akaun bank anda.\n\n1. Buka Hata Wallet → Tekan ikon dompet.\n2. Tekan logo bendera Malaysia 🇲🇾 → Tekan 'Withdraw'.\n3. Pilih 'Add Bank Account' dan masukkan butiran bank anda dengan lengkap dan betul.",
+        "images": [
+          "https://i.postimg.cc/283CXypQ/IMG-20250804-225359.jpg",
+          "https://i.postimg.cc/FFT9Zc6F/IMG-20250804-223452.jpg",
+          "https://i.postimg.cc/rF4L2hTf/IMG-20250804-233951.jpg",
+          "https://i.postimg.cc/tJKQV63d/IMG-20250804-233510.jpg"
+        ]
+      },
+      {
+        "title": "Langkah 6️⃣: Dapatkan Alamat Wallet Hata Anda",
+        "desc": "Alamat ini digunakan untuk menerima Worldcoin dari World App.\n\n1. Di Hata, pergi ke 'Wallet' → Pilih 'Worldcoin' (WLD).\n2. Tekan butang 'Receive'.\n3. PENTING: Pastikan anda memilih rangkaian (network) 'WorldChain'.\n4. Salin (copy) alamat wallet yang dipaparkan.",
+        "images": [
+          "https://i.postimg.cc/pLRqZH5R/IMG-20250803-192911.jpg",
+          "https://i.postimg.cc/XvMF8KzF/IMG-20250803-201936.jpg",
+          "https://i.postimg.cc/XvRbXqXn/IMG-20250803-193909.jpg",
+          "https://i.postimg.cc/vmVRRyhk/IMG-20250803-193408.jpg"
+        ]
+      },
+      {
+        "title": "Langkah 7️⃣: Pindahkan WLD dari World App ke Hata",
+        "desc": "Proses ini mengeluarkan WLD dari World App.\n\n1. Buka World App → Wallet → Pilih Worldcoin → Tekan menu 3 titik.\n2. Pilih 'Withdrawal' → 'External Wallet'.\n3. PENTING: Pilih rangkaian 'WorldChain'.\n4. Tampal (paste) alamat Hata Wallet yang anda salin tadi.\n5. Masukkan jumlah (minimum 2 WLD) dan sahkan transaksi.",
+        "images": [
+          "https://i.postimg.cc/BvTDWDS8/IMG-20250807-021022.jpg",
+          "https://i.postimg.cc/fbnXg5Nn/IMG-20250807-021508.jpg",
+          "https://i.postimg.cc/ZRYW1Msg/IMG-20250807-022925.jpg",
+          "https://i.postimg.cc/vmt12shf/IMG-20250807-025354.jpg"
+        ]
+      }
+    ],
+    "important": {
+      "title": "⚠️ Perkara Penting",
+      "notes": [
+        "Pilih rangkaian 'WorldChain' sahaja semasa memindahkan WLD. Kesilapan memilih rangkaian boleh menyebabkan koin anda hilang.",
+        "Pengeluaran minimum dari World App ialah 2 WLD. Pastikan baki anda mencukupi.",
+        "Koin yang hilang akibat kesilapan pengguna tidak boleh dikembalikan."
+      ]
+    }
+  },
+  "cashout_guide": {
+    "title": "Panduan Jual Worldcoin & Cashout ke Bank",
+    "steps": [
+      {
+        "title": "Langkah 1️⃣: Jual Worldcoin (WLD) ke Ringgit (MYR)",
+        "desc": "Tukar WLD anda kepada mata wang tempatan.\n\n1. Buka Hata Wallet dan pastikan WLD anda telah diterima.\n2. Pilih Worldcoin dan tekan butang 'Instant Sell'.\n3. Masukkan jumlah WLD yang ingin dijual (minimum 6 WLD) dan sahkan jualan. Caj servis sebanyak 1% akan dikenakan.",
+        "images": [
+          "https://i.postimg.cc/RZrNMFbw/IMG-20250807-033159.jpg",
+          "https://i.postimg.cc/X7sHzs4z/IMG-20250807-090620.jpg",
+          "https://i.postimg.cc/L8hCKjs6/IMG-20250807-091158.jpg",
+          "https://i.postimg.cc/bNyVg7cn/IMG-20250807-091953.jpg"
+        ]
+      },
+      {
+        "title": "Langkah 2️⃣: Keluarkan Wang (Cashout) ke Akaun Bank",
+        "desc": "Pindahkan baki MYR anda ke akaun bank tempatan.\n\n1. Pergi ke Wallet → Tekan logo bendera Malaysia 🇲🇾.\n2. Tekan butang 'Withdraw'.\n3. Pilih akaun bank (Online Banking / DuitNow) yang telah anda daftarkan.\n4. Masukkan jumlah yang ingin dikeluarkan. Caj pengeluaran sebanyak RM0.50 akan dikenakan.\n5. Sahkan transaksi melalui emel dan aplikasi Google Authenticator (2FA).",
+        "images": [
+          "https://i.postimg.cc/fb98kZXG/IMG-20250807-092510.jpg",
+          "https://i.postimg.cc/QC0bvMGT/IMG-20250807-092816.jpg",
+          "https://i.postimg.cc/ncS2kM18/IMG-20250807-093940.jpg",
+          "https://i.postimg.cc/wjtVbHW1/IMG-20250807-094811.jpg"
+        ]
+      },
+      {
+        "title": "Langkah 3️⃣: Semak Akaun Bank Anda",
+        "desc": "Wang akan dimasukkan ke akaun bank anda dalam masa yang singkat. Anda akan menerima notifikasi emel setelah transaksi berjaya.",
+        "images": [
+          "https://i.postimg.cc/GmZjWNNq/IMG-20250807-095201.jpg"
+        ]
+      }
+    ],
+    "important": {
+      "title": "🔐 Ciri Keselamatan & Nota Tambahan",
+      "notes": [
+        "Aktifkan Google Authenticator (2FA) untuk lapisan keselamatan tambahan pada akaun Hata anda.",
+        "Sentiasa pastikan notifikasi emel anda aktif untuk memantau semua transaksi.",
+        "Jangan kongsikan kata laluan atau kod 2FA anda dengan sesiapa."
+      ]
+    }
+  }
+}
