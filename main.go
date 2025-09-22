@@ -395,3 +395,11 @@ func main() {
 			msg.ParseMode = tgbotapi.ModeMarkdownV2
 			msg.ReplyMarkup = initialKeyboard
 			sentMsg, _ := bot.Send(msg)
+
+			default:
+            msg := tgbotapi.NewMessage(chatID, "❌ Arahan tak dikenali. Sila guna butang atau command yang betul.\n\nKetik /menu untuk papar menu.")
+            sentMsg, _ := bot.Send(msg)
+            messageIDsToDelete[chatID] = append(messageIDsToDelete[chatID], sentMsg.MessageID)
+        }
+    } // <- ini penutup for update := range updates
+} // <- ini penutup fungsi main()
