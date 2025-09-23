@@ -247,8 +247,8 @@ func main() {
             bot.Send(msg)
 
         default:
-            msg := tgbotapi.NewMessage(chatID, "❌ Arahan tidak dikenali. ✅ Sila guna butang atau arahan yang sah seperti. 
-                                       /claim /wallet /cashout.")
+            msg := tgbotapi.NewMessage(chatID, "❌ Arahan tidak dikenali\\. ✅ Sila guna butang atau arahan yang sah seperti\\. 
+                                       /claim /wallet /cashout\\.")
             sentMsg, _ := bot.Send(msg)
             messageIDsToDelete[chatID] = append(messageIDsToDelete[chatID], sentMsg.MessageID)
 
