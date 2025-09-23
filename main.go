@@ -180,28 +180,28 @@ func main() {
         
         switch update.Message.Text {
         case "/start", "🔙 Kembali Menu Utama":
-            msg := tgbotapi.NewMessage(chatID, "👋 Selamat Datang 🤖 *_`CRYTORIAN TELEBOT`_*\\! Tekan butang ▶️ di bawah untuk memaparkan menu\\.")
+            msg := tgbotapi.NewMessage(chatID, "👋 Selamat Datang ke 🤖*_`CRYTORIAN TELEBOT`_*\\! Tekan butang ▶️ di bawah untuk memaparkan menu\\.")
             msg.ParseMode = tgbotapi.ModeMarkdownV2
             msg.ReplyMarkup = initialKeyboard
             sentMsg, _ := bot.Send(msg)
             messageIDsToDelete[chatID] = append(messageIDsToDelete[chatID], sentMsg.MessageID)
 
         // --- OPTION 1: REPLY KEYBOARD FOR QUICK LINKS ---
-        case "🚀 Claim WorldCoin":
+        case "💸 Claim WorldCoin":
             text := "Untuk mendaftar *WorldCoin*, sila guna pautan di bawah:\n\n🔗 [Daftar WorldCoin Di Sini](https://worldcoin.org/join/4RH0OTE)\n\nUntuk panduan penuh bergambar, taip: `/claim`"
             msg := tgbotapi.NewMessage(chatID, text)
             msg.ParseMode = tgbotapi.ModeMarkdownV2
             sentMsg, _ := bot.Send(msg)
             messageIDsToDelete[chatID] = append(messageIDsToDelete[chatID], sentMsg.MessageID)
             
-        case "💰 Wallet HATA":
+        case "🛅 Wallet HATA":
             text := "Untuk mendaftar *HATA Wallet*, sila guna pautan di bawah:\n\n🔗 [Daftar HATA Di Sini](https://hata.io/signup?ref=HDX8778)\n\nUntuk panduan penuh bergambar, taip: `/wallet`"
             msg := tgbotapi.NewMessage(chatID, text)
             msg.ParseMode = tgbotapi.ModeMarkdownV2
             sentMsg, _ := bot.Send(msg)
             messageIDsToDelete[chatID] = append(messageIDsToDelete[chatID], sentMsg.MessageID)
 
-        case "💸 Cashout ke Bank":
+        case "🏧 Cashout ke Bank":
             text := "Panduan untuk menjual WorldCoin dan mengeluarkannya ke akaun bank anda boleh didapati melalui arahan di bawah\\.\n\ntaip: `/cashout`"
             msg := tgbotapi.NewMessage(chatID, text)
             msg.ParseMode = tgbotapi.ModeMarkdownV2
