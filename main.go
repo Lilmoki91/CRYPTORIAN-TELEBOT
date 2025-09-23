@@ -216,7 +216,7 @@ func main() {
             messageIDsToDelete[chatID] = append(messageIDsToDelete[chatID], sentMsg.MessageID)
         
         case "👨‍💻 Admin":
-            text := "🙏 *_Perlukan bantuan lanjut_*\\? 📞 Hubungi admin secara terus\\ 🕣 waktu urusan setiap hari\\.\n\n🔗 [Hubungi Admin](https://t.me/johansetia)"
+            text := "🙏 *_Perlukan bantuan lanjut_*\\? 📞Hubungi admin secara terus\\ 🕣Waktu urusan setiap hari\\.\n\n🔗 [Hubungi Admin](https://t.me/johansetia)"
            
            
             msg := tgbotapi.NewMessage(chatID, text)
@@ -247,7 +247,7 @@ func main() {
             bot.Send(msg)
 
         default:
-            msg := tgbotapi.NewMessage(chatID, "❌ Arahan tidak dikenali. *_Sila guna butang atau arahan yang sah_*.  /claim /wallet /cashout\\.")
+            msg := tgbotapi.NewMessage(chatID, "❌ Arahan tidak dikenali\\. ✅ Sila guna butang atau arahan yang sah seperti\\. /claim /wallet /cashout\\.")
             sentMsg, _ := bot.Send(msg)
             messageIDsToDelete[chatID] = append(messageIDsToDelete[chatID], sentMsg.MessageID)
 
