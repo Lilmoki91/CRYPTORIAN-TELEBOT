@@ -193,7 +193,7 @@ func main() {
 
 		switch update.Message.Text {
 		case "/start", "🔙 Kembali Menu Utama":
-			msg := tgbotapi.NewMessage(chatID, "👋 Selamat Datang ke 🤖 *_`CRYTORIAN TELEBOT`_*\\!\\. Tekan butang ▶️ di bawah untuk memaparkan menu\\.")
+			msg := tgbotapi.NewMessage(chatID, "👋 Selamat Datang ke 🤖 `*_CRYTORIAN TELEBOT_*`\\!\\. Tekan butang ▶️ di bawah untuk memaparkan menu\\.")
 			msg.ParseMode = tgbotapi.ModeMarkdownV2
 			msg.ReplyMarkup = initialKeyboard
 			
