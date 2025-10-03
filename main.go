@@ -1,240 +1,149 @@
-
-// --- BLOCK 01
-// --- SETUP & IMPORT ---
-
 package main
 
 import (
-    "encoding/json"
-    "fmt"
-    "log"
-    "os"
-    "strings"
+	"log"
+	"os"
 
-    tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api/v5"
+	tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api/v5"
 )
 
-// --- STRUCTS UNTUK PANDUAN BIASA ---
-type Guide struct {
-    Title     string    `json:"title"`
-    Steps     []Step    `json:"steps"`
-    Important Important `json:"important"`
-}
-type Step struct {
-    Title  string   `json:"title"`
-    Desc   string   `json:"desc"`
-    Images []string `json:"images"`
-}
-type Important struct {
-    Title string   `json:"title"`
-    Notes []string `json:"notes"`
-}
-
-// --- STRUCTS BARU UNTUK INFOGRAFIK ---
-type InfographicStep struct {
-    Step    string   `json:"step"`
-    Image   string   `json:"image"`
-    Details []string `json:"details"`
-    Arrow   string   `json:"arrow"`
-}
-type InfographicGuide struct {
-    Title     string            `json:"title"`
-    ImageMain string            `json:"image_main"`
-    Steps     []InfographicStep `json:"steps"`
-}
-
-// --- BLOCK 02 ---
 // --- DEFINISI PAPAN KEKUNCI (KEYBOARD) ---
 
-var mainMenuKeyboard = tgbotapi.NewInlineKeyboardMarkup(
-    tgbotapi.NewInlineKeyboardRow(
-        tgbotapi.NewInlineKeyboardButtonData("📚 Panduan Kripto", "nav_guides"),
-        tgbotapi.NewInlineKeyboardButtonData("🔗 Pautan & Bantuan", "nav_links"),
-    ),
-    tgbotapi.NewInlineKeyboardRow(
-        tgbotapi.NewInlineKeyboardButtonData("📊 Infografik", "get_infographic"),
-        tgbotapi.NewInlineKeyboardButtonData("♻️ Reset Mesej", "action_reset"),
-    ),
+// 1. Menu Utama (di bawah papan kekunci)
+var mainMenuReplyKeyboard = tgbotapi.NewReplyKeyboard(
+	tgbotapi.NewKeyboardButtonRow(
+		tgbotapi.NewKeyboardButton("📚 Panduan Kripto"),
+		tgbotapi.NewKeyboardButton("🔗 Pautan & Bantuan"),
+	),
+	tgbotapi.NewKeyboardButtonRow(
+		tgbotapi.NewKeyboardButton("📊 Infografik"),
+		tgbotapi.NewKeyboardButton("♻️ Reset Mesej"),
+	),
+	tgbotapi.NewKeyboardButtonRow(
+		tgbotapi.NewKeyboardButton("🔙 Kembali Menu Utama"), // Butang untuk panggil semula mesej alu-aluan
+	),
 )
 
-var guidesMenuKeyboard = tgbotapi.NewInlineKeyboardMarkup(
-    tgbotapi.NewInlineKeyboardRow(
-        tgbotapi.NewInlineKeyboardButtonData("Claim Worldcoin", "get_guide_claim"),
-        tgbotapi.NewInlineKeyboardButtonData("Wallet HATA", "get_guide_wallet"),
-    ),
-    tgbotapi.NewInlineKeyboardRow(
-        tgbotapi.NewInlineKeyboardButtonData("Proses Cashout", "get_guide_cashout"),
-    ),
-    tgbotapi.NewInlineKeyboardRow(
-        tgbotapi.NewInlineKeyboardButtonData("« Kembali ke Menu Utama", "nav_main"),
-    ),
+// 2. Sub-Menu untuk Panduan (pada mesej)
+var guidesInlineKeyboard = tgbotapi.NewInlineKeyboardMarkup(
+	tgbotapi.NewInlineKeyboardRow(
+		tgbotapi.NewInlineKeyboardButtonData("Claim Worldcoin", "get_guide_claim"),
+		tgbotapi.NewInlineKeyboardButtonData("Wallet HATA", "get_guide_wallet"),
+	),
+	tgbotapi.NewInlineKeyboardRow(
+		tgbotapi.NewInlineKeyboardButtonData("Proses Cashout", "get_guide_cashout"),
+	),
+	tgbotapi.NewInlineKeyboardRow(
+		tgbotapi.NewInlineKeyboardButtonData("« Tutup Menu Ini", "close_menu"),
+	),
 )
 
-var linksMenuKeyboard = tgbotapi.NewInlineKeyboardMarkup(
-    tgbotapi.NewInlineKeyboardRow(
-        tgbotapi.NewInlineKeyboardButtonURL("📢 Channel Telegram", "https://t.me/cucikripto"),
-        tgbotapi.NewInlineKeyboardButtonURL("🆘 Hubungi Admin", "https://t.me/johansetia"),
-    ),
-    tgbotapi.NewInlineKeyboardRow(
-        tgbotapi.NewInlineKeyboardButtonData("« Kembali ke Menu Utama", "nav_main"),
-    ),
+// 3. Sub-Menu untuk Pautan (pada mesej)
+var linksInlineKeyboard = tgbotapi.NewInlineKeyboardMarkup(
+	tgbotapi.NewInlineKeyboardRow(
+		tgbotapi.NewInlineKeyboardButtonURL("📢 Channel Telegram", "https://t.me/cucikripto"),
+		tgbotapi.NewInlineKeyboardButtonURL("🆘 Hubungi Admin", "https://t.me/johansetia"),
+	),
+	tgbotapi.NewInlineKeyboardRow(
+		tgbotapi.NewInlineKeyboardButtonData("« Tutup Menu Ini", "close_menu"),
+	),
 )
-
-// --- ⚠️ BLOCK 03 (HELPER FUNCTION) ⚠️
-// (Letakkan fungsi escapeMarkdownV2 di sini jika anda mahu gunakannya)
-
-func sendInfographicGuide(bot *tgbotapi.BotAPI, chatID int64, guide InfographicGuide, messageIDs *map[int64][]int) {
-    titleMsg := tgbotapi.NewMessage(chatID, guide.Title)
-    if sentMsg, err := bot.Send(titleMsg); err == nil {
-        (*messageIDs)[chatID] = append((*messageIDs)[chatID], sentMsg.MessageID)
-    }
-    if guide.ImageMain != "" {
-        photo := tgbotapi.NewPhoto(chatID, tgbotapi.FileURL(guide.ImageMain))
-        if sentMsg, err := bot.Send(photo); err == nil {
-            (*messageIDs)[chatID] = append((*messageIDs)[chatID], sentMsg.MessageID)
-        }
-    }
-    for _, step := range guide.Steps {
-        var caption strings.Builder
-        caption.WriteString(fmt.Sprintf("*%s*\n\n", step.Step))
-        for _, detail := range step.Details {
-            caption.WriteString(fmt.Sprintf("`-` %s\n", detail))
-        }
-        if step.Arrow != "" {
-            caption.WriteString(fmt.Sprintf("\n%s\n", step.Arrow))
-        }
-        photo := tgbotapi.NewPhoto(chatID, tgbotapi.FileURL(step.Image))
-        photo.Caption = caption.String()
-        photo.ParseMode = tgbotapi.ModeMarkdown
-        if sentMsg, err := bot.Send(photo); err == nil {
-            (*messageIDs)[chatID] = append((*messageIDs)[chatID], sentMsg.MessageID)
-        }
-    }
-}
-
-// ⚠️ Untuk tujuan ujian, kita juga akan cipta fungsi sendDetailedGuide yang ringkas
-func sendDetailedGuide(bot *tgbotapi.BotAPI, chatID int64, guide Guide, messageIDs *map[int64][]int) {
-    // Hantar mesej ringkas sebagai ganti panduan penuh
-    text := fmt.Sprintf("Panduan untuk *%s* akan dipaparkan di sini.", guide.Title)
-    msg := tgbotapi.NewMessage(chatID, text)
-    msg.ParseMode = tgbotapi.ModeMarkdown
-    if sentMsg, err := bot.Send(msg); err == nil {
-        (*messageIDs)[chatID] = append((*messageIDs)[chatID], sentMsg.MessageID)
-    }
-}
-
-// --- BLOCK 04
-// --- MARKDOWN.JSON LOADER (MAIN LOGIC)
 
 func main() {
-    botToken := os.Getenv("TELEGRAM_BOT_TOKEN")
-    if botToken == "" {
-        log.Fatal("TELEGRAM_BOT_TOKEN mesti ditetapkan")
-    }
+	botToken := os.Getenv("TELEGRAM_BOT_TOKEN")
+	if botToken == "" {
+		log.Fatal("TELEGRAM_BOT_TOKEN mesti ditetapkan")
+	}
 
-    bot, err := tgbotapi.NewBotAPI(botToken)
-    if err != nil {
-        log.Panic(err)
-    }
-    log.Printf("Bot Ujian Menu dimulakan: @%s", bot.Self.UserName)
+	bot, err := tgbotapi.NewBotAPI(botToken)
+	if err != nil {
+		log.Panic(err)
+	}
+	log.Printf("Bot Hibrid UI dimulakan: @%s", bot.Self.UserName)
 
-    log.Println("Memuatkan panduan dari markdown.json...")
-    jsonData, err := os.ReadFile("markdown.json")
-    if err != nil {
-        log.Fatalf("Gagal membaca markdown.json: %v", err)
-    }
+	u := tgbotapi.NewUpdate(0)
+	u.Timeout = 60
+	updates := bot.GetUpdatesChan(u)
 
-    var guides map[string]json.RawMessage
-    if err := json.Unmarshal(jsonData, &guides); err != nil {
-        log.Fatalf("Gagal memproses JSON: %v", err)
-    }
-    log.Println("Panduan berjaya dimuatkan.")
+	var messageIDsToDelete = make(map[int64][]int)
 
-    u := tgbotapi.NewUpdate(0)
-    u.Timeout = 60
-    updates := bot.GetUpdatesChan(u)
+	for update := range updates {
+		// --- PENGENDALIAN BUTANG INLINE (SUB-MENU) ---
+		if update.CallbackQuery != nil {
+			bot.Request(tgbotapi.NewCallback(update.CallbackQuery.ID, ""))
+			chatID := update.CallbackQuery.Message.Chat.ID
+			messageID := update.CallbackQuery.Message.MessageID
 
-    var messageIDsToDelete = make(map[int64][]int)
+			switch update.CallbackQuery.Data {
+			// Butang 'Tutup' atau 'Kembali' pada sub-menu akan memadam mesej sub-menu itu
+			case "close_menu":
+				deleteMsg := tgbotapi.NewDeleteMessage(chatID, messageID)
+				bot.Request(deleteMsg)
+			
+			// Tindakan untuk butang sub-menu
+			case "get_guide_claim":
+				bot.Send(tgbotapi.NewMessage(chatID, "✅ Anda telah menekan butang 'Claim Worldcoin'. Fungsi panduan akan dijalankan di sini."))
+			
+			case "get_guide_wallet":
+				bot.Send(tgbotapi.NewMessage(chatID, "✅ Anda telah menekan butang 'Wallet HATA'. Fungsi panduan akan dijalankan di sini."))
 
-    for update := range updates {
-        if update.CallbackQuery != nil {
-            bot.Request(tgbotapi.NewCallback(update.CallbackQuery.ID, ""))
-            chatID := update.CallbackQuery.Message.Chat.ID
-            messageID := update.CallbackQuery.Message.MessageID
+			case "get_guide_cashout":
+				bot.Send(tgbotapi.NewMessage(chatID, "✅ Anda telah menekan butang 'Proses Cashout'. Fungsi panduan akan dijalankan di sini."))
+			}
+			continue
+		}
 
-            switch update.CallbackQuery.Data {
-            case "nav_main":
-                text := "👋 Selamat Datang! Sila pilih satu pilihan di bawah:"
-                editMsg := tgbotapi.NewEditMessageTextAndMarkup(chatID, messageID, text, mainMenuKeyboard)
-                bot.Request(editMsg)
-            case "nav_guides":
-                text := "📚 *Panduan Kripto*\n\nPilih panduan yang anda mahu lihat:"
-                editMsg := tgbotapi.NewEditMessageTextAndMarkup(chatID, messageID, text, guidesMenuKeyboard)
-                editMsg.ParseMode = tgbotapi.ModeMarkdown
-                bot.Request(editMsg)
-            case "nav_links":
-                text := "🔗 *Pautan & Bantuan*\n\nPilih satu pautan di bawah:"
-                editMsg := tgbotapi.NewEditMessageTextAndMarkup(chatID, messageID, text, linksMenuKeyboard)
-                editMsg.ParseMode = tgbotapi.ModeMarkdown
-                bot.Request(editMsg)
-            
-            case "get_guide_claim":
-                bot.Request(tgbotapi.NewDeleteMessage(chatID, messageID))
-                var guideData Guide
-                json.Unmarshal(guides["worldcoin_registration_guide"], &guideData)
-                sendDetailedGuide(bot, chatID, guideData, &messageIDsToDelete)
-            
-            case "get_guide_wallet":
-                bot.Request(tgbotapi.NewDeleteMessage(chatID, messageID))
-                var guideData Guide
-                json.Unmarshal(guides["hata_setup_guide"], &guideData)
-                sendDetailedGuide(bot, chatID, guideData, &messageIDsToDelete)
+		// --- PENGENDALIAN TEKS & BUTANG UTAMA (REPLY KEYBOARD) ---
+		if update.Message != nil && update.Message.Text != "" {
+			chatID := update.Message.Chat.ID
+			messageIDsToDelete[chatID] = append(messageIDsToDelete[chatID], update.Message.MessageID)
 
-            case "get_guide_cashout":
-                bot.Request(tgbotapi.NewDeleteMessage(chatID, messageID))
-                var guideData Guide
-                json.Unmarshal(guides["cashout_guide"], &guideData)
-                sendDetailedGuide(bot, chatID, guideData, &messageIDsToDelete)
+			switch update.Message.Text {
+			case "/start", "🔙 Kembali Menu Utama":
+				text := "👋 Selamat Datang! Sila pilih satu pilihan dari menu utama di bawah."
+				msg := tgbotapi.NewMessage(chatID, text)
+				msg.ReplyMarkup = mainMenuReplyKeyboard
+				if sentMsg, err := bot.Send(msg); err == nil {
+					messageIDsToDelete[chatID] = append(messageIDsToDelete[chatID], sentMsg.MessageID)
+				}
 
-            case "get_infographic":
-                bot.Request(tgbotapi.NewDeleteMessage(chatID, messageID))
-                var infographicData InfographicGuide
-                if err := json.Unmarshal(guides["infographic_guide"], &infographicData); err == nil {
-                    sendInfographicGuide(bot, chatID, infographicData, &messageIDsToDelete)
-                } else {
-                    bot.Send(tgbotapi.NewMessage(chatID, "Gagal memproses data infografik."))
-                    log.Printf("Ralat unmarshal infografik: %v", err)
-                }
-                
-            case "action_reset":
-                for _, id := range messageIDsToDelete[chatID] {
-                    bot.Request(tgbotapi.NewDeleteMessage(chatID, id))
-                }
-                messageIDsToDelete[chatID] = nil
-                startText := "🔄 Sesi telah direset. Sila pilih satu pilihan di bawah:"
-                msg := tgbotapi.NewMessage(chatID, startText)
-                msg.ReplyMarkup = mainMenuKeyboard
-                if sentMsg, err := bot.Send(msg); err == nil {
-                    messageIDsToDelete[chatID] = append(messageIDsToDelete[chatID], sentMsg.MessageID)
-                }
-            }
-            continue
-        }
+			case "📚 Panduan Kripto":
+				text := "📚 *Panduan Kripto*\n\nPilih satu panduan dari sub-menu di bawah:"
+				msg := tgbotapi.NewMessage(chatID, text)
+				msg.ParseMode = tgbotapi.ModeMarkdown
+				msg.ReplyMarkup = guidesInlineKeyboard
+				if sentMsg, err := bot.Send(msg); err == nil {
+					messageIDsToDelete[chatID] = append(messageIDsToDelete[chatID], sentMsg.MessageID)
+				}
 
-        if update.Message != nil {
-            chatID := update.Message.Chat.ID
-            messageIDsToDelete[chatID] = append(messageIDsToDelete[chatID], update.Message.MessageID)
+			case "🔗 Pautan & Bantuan":
+				text := "🔗 *Pautan & Bantuan*\n\nPilih satu pautan dari sub-menu di bawah:"
+				msg := tgbotapi.NewMessage(chatID, text)
+				msg.ParseMode = tgbotapi.ModeMarkdown
+				msg.ReplyMarkup = linksInlineKeyboard
+				if sentMsg, err := bot.Send(msg); err == nil {
+					messageIDsToDelete[chatID] = append(messageIDsToDelete[chatID], sentMsg.MessageID)
+				}
 
-            if update.Message.IsCommand() && update.Message.Command() == "start" {
-                text := "👋 Selamat Datang! Sila pilih satu pilihan di bawah:"
-                msg := tgbotapi.NewMessage(chatID, text)
-                msg.ReplyMarkup = mainMenuKeyboard
-                if sentMsg, err := bot.Send(msg); err == nil {
-                    messageIDsToDelete[chatID] = append(messageIDsToDelete[chatID], sentMsg.MessageID)
-                }
-            }
-        }
-    }
+			case "📊 Infografik":
+				bot.Send(tgbotapi.NewMessage(chatID, "✅ Anda telah menekan butang 'Infografik'. Fungsi infografik akan dijalankan di sini."))
+				
+			case "♻️ Reset Mesej":
+				for _, id := range messageIDsToDelete[chatID] {
+					bot.Request(tgbotapi.NewDeleteMessage(chatID, id))
+				}
+				messageIDsToDelete[chatID] = nil
+				
+				startText := "🔄 Sesi telah direset. Sila pilih satu pilihan dari menu utama di bawah."
+				msg := tgbotapi.NewMessage(chatID, startText)
+				msg.ReplyMarkup = mainMenuReplyKeyboard
+				if sentMsg, err := bot.Send(msg); err == nil {
+					messageIDsToDelete[chatID] = append(messageIDsToDelete[chatID], sentMsg.MessageID)
+				}
+			
+			default:
+				// (Anda boleh letak mesej untuk arahan tidak sah di sini)
+			}
+		}
+	}
 }
-
-
