@@ -8,7 +8,7 @@ import (
 	"regexp" // PEMBETULAN: Import yang hilang telah ditambah
 	"strings"
 
-	tgbotapi "github.comcom/go-telegram-bot-api/telegram-bot-api/v5"
+	tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api/v5"
 )
 
 // --- SEMUA STRUCTS YANG DIPERLUKAN ---
