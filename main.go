@@ -218,7 +218,7 @@ func main() {
     
     // 1. HANTAR AUDIO DAHULU
     // Gantikan URL di bawah dengan pautan "Raw" ke fail audio anda di GitHub
-    audioURL := "https://raw.githubusercontent.com/Lilmoki91/CRYPTORIAN-TELEBOT/main/assets/Gundam.mp3" // 👈 Pastikan URL ini betul
+    audioURL := "https://raw.githubusercontent.com/Lilmoki91/CRYPTORIAN-TELEBOT/main/assets/Selamat_datang.mp3" // 👈 Pastikan URL ini betul
     
     audioMsg := tgbotapi.NewAudio(chatID, tgbotapi.FileURL(audioURL))
     
