@@ -214,12 +214,29 @@ func main() {
 
 			switch update.Message.Text {
 			case "/start", "🔙 Kembali Menu Utama":
-				text := "👋 Selamat Datang! Sila pilih satu pilihan dari menu utama di bawah."
-				msg := tgbotapi.NewMessage(chatID, text)
-				msg.ReplyMarkup = mainMenuReplyKeyboard
-				if sentMsg, err := bot.Send(msg); err == nil {
-					messageIDsToDelete[chatID] = append(messageIDsToDelete[chatID], sentMsg.MessageID)
-				}
+    chatID := update.Message.Chat.ID
+    
+    // 1. HANTAR AUDIO DAHULU
+    // Gantikan URL di bawah dengan pautan "Raw" ke fail audio anda di GitHub
+    audioURL := "https://raw.githubusercontent.com/Lilmoki91/CRYPTORIAN-TELEBOT/main/assets/Gundam.mp3" // 👈 Pastikan URL ini betul
+    
+    audioMsg := tgbotapi.NewAudio(chatID, tgbotapi.FileURL(audioURL))
+    
+    // Hantar audio. Kita tidak perlu rekod ID-nya kerana ia hanya lagu pembukaan.
+    if _, err := bot.Send(audioMsg); err != nil {
+        log.Printf("Gagal hantar audio dari URL: %v", err)
+    }
+    
+    // 2. KEMUDIAN, HANTAR MENU UTAMA
+    text := "👋 Selamat Datang! Sila pilih satu pilihan dari menu utama di bawah."
+    menuMsg := tgbotapi.NewMessage(chatID, text)
+    menuMsg.ReplyMarkup = mainMenuReplyKeyboard
+    
+    // Rekod ID mesej menu ini untuk fungsi 'Reset'
+    if sentMsg, err := bot.Send(menuMsg); err == nil {
+        messageIDsToDelete[chatID] = append(messageIDsToDelete[chatID], sentMsg.MessageID)
+    }
+
 			case "📚 Panduan Kripto":
 				text := "📚 *Panduan Kripto*\n\nPilih satu panduan dari sub-menu di bawah:"
 				msg := tgbotapi.NewMessage(chatID, text)
