@@ -59,11 +59,9 @@ var linksInlineKeyboard = tgbotapi.NewInlineKeyboardMarkup(
 		tgbotapi.NewInlineKeyboardButtonURL("🆘 Hubungi Admin", "https://t.me/johansetia"),
 	),
 	tgbotapi.NewInlineKeyboardRow(
-		// Koma ditambah di hujung baris ini untuk membetulkan ralat
 		tgbotapi.NewInlineKeyboardButtonData("« Tutup Menu Ini", "close_menu"),
 	),
 )
-
 
 
 // --- FUNGSI-FUNGSI BANTUAN ---
