@@ -7,8 +7,7 @@ free worldcoin, transfer pada wallet hata serta cashout ke local bank.
 
 ## 🛠 Struktur Projek
 
-
-     
+```     
       ∆
      /_\    <- Kepala (Top)
     /   \
@@ -24,4 +23,4 @@ free worldcoin, transfer pada wallet hata serta cashout ke local bank.
      !!!!!
       !!!
 
-
+```
