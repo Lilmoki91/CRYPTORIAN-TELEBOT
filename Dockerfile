@@ -1,21 +1,35 @@
-# syntax=docker/dockerfile:1
-FROM golang:1.22 AS builder
+# Tahap 1: Pembina
+FROM golang:1.21-alpine AS builder
 
+# Tetapkan direktori kerja
 WORKDIR /app
-COPY . .
 
-RUN go mod tidy
-RUN go build -ldflags="-w -s" -o telebot main.go
+# Salin fail dependensi (go.mod, go.sum)
+COPY go.mod go.sum ./
+RUN go mod download
 
-FROM gcr.io/distroless/base-debian12
-WORKDIR /
-COPY --from=builder /app/telebot /telebot
-COPY config/ /config/
+# Salin kod bot dan fail konfigurasi
+COPY main.go markdown.json ./
 
-# Expose port 8080 (Cloud Run default)
+# Bina binari Go
+RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix nocgo -o cryptorian-telebot .
+
+# Tahap 2: Kontena Akhir
+FROM alpine:latest
+
+# Tambah sijil CA
+RUN apk --no-cache add ca-certificates
+
+WORKDIR /root/
+
+# Salin binari yang dibina dari tahap pembina
+COPY --from=builder /app/cryptorian-telebot .
+
+# CIPTA FOLDER DAN SALIN FAIL KONFIGURASI KRITIKAL
+# Kod anda memerlukan markdown.json di dalam folder /config/
+RUN mkdir -p /config/
+COPY --from=builder /app/markdown.json /config/markdown.json 
+
 EXPOSE 8080
 
-# Run as non-root user for security (user 65532 = nonroot di distroless)
-USER 65532:65532
-
-CMD ["/telebot"]
+CMD ["./cryptorian-telebot"]
