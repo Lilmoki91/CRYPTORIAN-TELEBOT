@@ -44,6 +44,20 @@ free worldcoin, transfer pada wallet hata serta cashout ke local bank.
       !!!
 
 
+==============================
+    pew, pew.. battle  bug
+==============================
 
-
+👾👾👾          💣
+*    👾       *         *        👾
+  *            *  pew! pew!  *
+         ─────►      💥
+           *           *
+          /∆\
+         /_O_\
+        /_|_|_\
+         _/ \_
+       !!!!!!!!!
+         !!!!!
+.         !!!
 ```
