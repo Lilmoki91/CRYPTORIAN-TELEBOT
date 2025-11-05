@@ -14,7 +14,7 @@ free worldcoin, transfer pada wallet hata serta cashout ke local bank.
     |---|   <- Mata (Eyes)
     | O |
     |---|
-    /---\   <- Badan (Body)
+   /-----\   <- Badan (Body)
    | / \ |
    |_/_\_|  <- Kaki (Bottom)
    (_____) 
