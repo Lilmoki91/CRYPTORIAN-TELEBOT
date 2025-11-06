@@ -3,7 +3,7 @@
 # Pemboleh ubah: Tukar 'cryptorian-telebot' jika nama perkhidmatan anda berbeza.
 # Gantikan 'asia-southeast1' jika rantau Cloud Run anda berbeza.
 substitutions:
-  _SERVICE_NAME: cryptorian-telebot
+  _SERVICE_NAME: worldcoin-helper-ai
   _REGION: asia-southeast1
 
 steps:
