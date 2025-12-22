@@ -4,6 +4,8 @@ import (
 	"encoding/json"
 	"fmt"
 	"log"
+	"net/http"
+	"net/url"
 	"os"
 	"regexp"
 	"strings"
@@ -67,7 +69,6 @@ var linksInlineKeyboard = tgbotapi.NewInlineKeyboardMarkup(
 	),
 	tgbotapi.NewInlineKeyboardRow(tgbotapi.NewInlineKeyboardButtonData("« Tutup Menu Ini", "close_menu")),
 )
-
 
 // --- FUNGSI-FUNGSI BANTUAN ---
 
@@ -214,9 +215,52 @@ func main() {
 	}
 	log.Println("Panduan berjaya dimuatkan.")
 
-	u := tgbotapi.NewUpdate(0)
-	u.Timeout = 60
-	updates := bot.GetUpdatesChan(u)
+	// Setup webhook if WEBHOOK_URL is provided, else fallback to polling
+	webhookURL := os.Getenv("WEBHOOK_URL")
+	var updates tgbotapi.UpdatesChannel
+
+	if webhookURL != "" {
+		// Validate URL and derive path
+		parsedURL, err := url.Parse(webhookURL)
+		if err != nil {
+			log.Fatalf("WEBHOOK_URL tidak sah: %v", err)
+		}
+
+		// Set webhook with Telegram
+		wh := tgbotapi.NewWebhook(webhookURL)
+		if _, err := bot.Request(wh); err != nil {
+			log.Fatalf("Gagal menetapkan webhook: %v", err)
+		}
+		log.Printf("Webhook ditetapkan ke: %s", webhookURL)
+
+		// Use the path component for ListenForWebhook
+		path := parsedURL.Path
+		if path == "" {
+			// If no path provided, default to token-based path
+			path = "/" + bot.Token
+		}
+		updates = bot.ListenForWebhook(path)
+
+		// Start HTTP server to receive webhook calls
+		port := os.Getenv("PORT")
+		if port == "" {
+			port = "8443"
+		}
+		go func() {
+			log.Printf("Mendengar webhook pada port %s, path %s", port, path)
+			// Note: TLS is recommended for production. For bare HTTP reverse proxies / ingress may handle TLS.
+			if err := http.ListenAndServe(":"+port, nil); err != nil {
+				log.Fatalf("HTTP server bagi webhook gagal: %v", err)
+			}
+		}()
+	} else {
+		// Fallback to long polling if WEBHOOK_URL not set
+		u := tgbotapi.NewUpdate(0)
+		u.Timeout = 60
+		updates = bot.GetUpdatesChan(u)
+		log.Println("WEBHOOK_URL tidak ditetapkan — menggunakan long polling sebagai fallback.")
+	}
+
 	var messageIDsToDelete = make(map[int64][]int)
 
 	for update := range updates {
