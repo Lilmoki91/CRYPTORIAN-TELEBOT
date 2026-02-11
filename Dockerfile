@@ -1,36 +1,22 @@
-# syntax=docker/dockerfile:1
-
-FROM golang:1.22 AS builder
-
-
+FROM golang:1.22-alpine AS builder
+RUN apk add --no-cache git ca-certificates
 WORKDIR /app
-
 COPY . .
+# Kita senaraikan fail untuk debug kalau gagal
+RUN ls -l
+RUN go mod download
+RUN CGO_ENABLED=0 GOOS=linux go build -o telebot main.go
 
+FROM alpine:latest
+RUN apk --no-cache add ca-certificates
+WORKDIR /root/
+COPY --from=builder /app/telebot .
 
-RUN go mod tidy
+# Guna wildcard (*) supaya kalau fail tak ada, build TAKKAN gagal
+COPY --from=builder /app/markdown.jso* ./
+COPY --from=builder /app/selamat_datang.mp* ./
 
-RUN go build -ldflags="-w -s" -o telebot main.go
-
-
-FROM gcr.io/distroless/base-debian12
-
-WORKDIR /
-
-COPY --from=builder /app/telebot /telebot
-
-COPY config/ /config/
-
-
-# Expose port 8080 (Cloud Run default)
-
-EXPOSE 8080
-
-
-# Run as non-root user for security (user 65532 = nonroot di distroless)
-
-USER 65532:65532
-
-
-CMD ["/telebot"]
-
+ENV GODEBUG=netdns=go
+ENV PORT=7860
+EXPOSE 7860
+CMD ["./telebot"]
