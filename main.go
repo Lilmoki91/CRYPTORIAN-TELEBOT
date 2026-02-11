@@ -88,7 +88,7 @@ var guidesInlineKeyboard = tgbotapi.NewInlineKeyboardMarkup(
 var linksInlineKeyboard = tgbotapi.NewInlineKeyboardMarkup(
     tgbotapi.NewInlineKeyboardRow(
         tgbotapi.NewInlineKeyboardButtonURL("🌏 Claim Worldcoin", "https://worldcoin.org/join/4RH0OTE"),
-        tgbotapi.NewInlineKeyboardButtonURL("🛄 Wallet HATA", "https://hata.io/signup?ref=HDX8778"),
+        tgbotapi.NewInlineKeyboardButtonURL("🛄 Wallet HATA", "https://hata.io/signup?ref=186300"),
     ),
     tgbotapi.NewInlineKeyboardRow(
         tgbotapi.NewInlineKeyboardButtonURL("📢 Channel Telegram", "https://t.me/cucikripto"),
