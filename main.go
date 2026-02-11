@@ -4,6 +4,7 @@ import (
     "encoding/json"
     "fmt"
     "log"
+    "net/http" // PASTIKAN ADA INI
     "os"
     "regexp"
     "strings"
@@ -295,6 +296,32 @@ func main() {
     u.Timeout = 60
     updates := bot.GetUpdatesChan(u)
 
+   
+    
+    // --- 📌 KOD TAMBAHAN UNTUK KOYEB (MULA) ---
+    go func() {
+        // Koyeb akan memberikan port secara dinamik melalui env "PORT"
+        port := os.Getenv("PORT")
+        if port == "" {
+            port = "8080" // Port default untuk local testing
+        }
+
+        // Endpoint ringkas supaya Koyeb tahu bot anda tidak "mati"
+        http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+            fmt.Fprintf(w, "✅ Cryptorian Bot is Running Live!")
+        })
+
+        log.Printf("🚀 Health Check Server bermula di port: %s", port)
+        
+        // Memulakan server HTTP dalam goroutine supaya tidak mengganggu bot
+        if err := http.ListenAndServe(":"+port, nil); err != nil {
+            log.Printf("⚠️ Gagal memulakan HTTP server: %v", err)
+        }
+    }()
+    // --- KOD TAMBAHAN UNTUK KOYEB (TAMAT) ---
+
+    
+    
     // Map untuk menyimpan ID mesej dan mutex untuk keselamatan konkurensi
     var (
         messageIDsToDelete = make(map[int64][]int)
