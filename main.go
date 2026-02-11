@@ -303,7 +303,7 @@ func main() {
         // Koyeb akan memberikan port secara dinamik melalui env "PORT"
         port := os.Getenv("PORT")
         if port == "" {
-            port = "8080" // Port default untuk local testing
+            port = "8000" // Port default untuk local testing
         }
 
         // Endpoint ringkas supaya Koyeb tahu bot anda tidak "mati"
