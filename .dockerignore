@@ -1,0 +1,76 @@
+# Binaries & build output
+
+/telebot
+
+*.exe
+
+*.exe~
+
+*.dll
+
+*.so
+
+*.dylib
+
+*.test
+
+*.out
+
+
+# Go build cache
+
+/bin/
+
+/obj/
+
+
+# Vendor directory (if you don't want to include with build context)
+
+vendor/
+
+
+# Git & VCS
+
+.git
+
+.gitignore
+
+
+# Editor & OS files
+
+.vscode/
+
+.idea/
+
+*.swp
+
+*~
+
+.DS_Store
+
+Thumbs.db
+
+
+# Logs & temp files
+
+*.log
+
+*.tmp
+
+
+# Env & secrets (jika tidak mahu termasuk dalam image)
+
+.env
+
+*.env
+
+
+# Test & coverage
+
+*.coverprofile
+
+
+# (Optional) Exclude config jika inject dari Secret Manager atau Cloud Storage
+
+# config/
+
