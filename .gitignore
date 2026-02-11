@@ -1,32 +1,74 @@
-# If you prefer the allow list template instead of the deny list, see community template:
-# https://github.com/github/gitignore/blob/main/community/Golang/Go.AllowList.gitignore
-#
-# Binaries for programs and plugins
-*.exe
-*.exe~
-*.dll
-*.so
-*.dylib
+# ===================================================================
 
-# Test binary, built with `go test -c`
-*.test
+# Fail .gitignore Lengkap untuk Projek Go (Telegram Bot)
 
-# Code coverage profiles and other test artifacts
-*.out
-coverage.*
-*.coverprofile
-profile.cov
+# ===================================================================
 
-# Dependency directories (remove the comment below to include it)
-# vendor/
 
-# Go workspace file
-go.work
-go.work.sum
+# 1. Rahsia & Konfigurasi Persekitaran (Secrets & Environment Config)
 
-# env file
+#    SANGAT PENTING untuk mengelakkan token bot atau kunci API daripada dimuat naik.
+
 .env
 
-# Editor/IDE
-# .idea/
-# .vscode/
+.env.*
+
+*.token
+
+
+# 2. Kod Go (Go Code)
+
+#    Abaikan fail program (binary) yang telah dicompile oleh 'go build'.
+
+#    Gantikan 'CRYPTORIAN-TELEBOT' dengan nama projek anda jika berbeza.
+
+CRYPTORIAN-TELEBOT
+
+main
+
+
+#    Abaikan folder 'vendor' yang mengandungi salinan library.
+
+vendor/
+
+
+# 3. Fail Log (Log Files)
+
+#    Abaikan fail log yang mungkin terhasil semasa ujian.
+
+*.log
+
+*.out
+
+
+# 4. Fail Sistem Operasi (Operating System Files)
+
+#    Fail sementara yang dicipta oleh macOS, Windows, dan Linux.
+
+.DS_Store
+
+Thumbs.db
+
+._*
+
+.Spotlight-V100
+
+.Trashes
+
+
+# 5. Fail Editor Kod & IDE (Code Editor & IDE Files)
+
+#    Abaikan folder tetapan untuk editor kod popular seperti VSCode, GoLand, dll.
+
+.vscode/
+
+.idea/
+
+.project
+
+.settings/
+
+*.sublime-project
+
+*.sublime-workspace
+
