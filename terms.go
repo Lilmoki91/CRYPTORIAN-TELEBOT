@@ -13,7 +13,7 @@ import (
 )
 
 // Konfigurasi Utama
-const ADMIN_ID int64 = 007 //7348614053 
+const ADMIN_ID int64 = 7348614053 // ID Mr JOHAN
 
 var (
 	githubToken = os.Getenv("GITHUB_TOKEN")
@@ -30,42 +30,66 @@ type TermsData struct {
 			Heading string   `json:"heading"`
 			Content []string `json:"content"`
 		} `json:"sections"`
+		Footer    string `json:"footer"`
+		Copyright string `json:"copyright"`
 	} `json:"terms_and_conditions"`
 }
 
+// IsAdmin menyemak jika pengguna adalah Mr JOHAN
 func IsAdmin(userID int64) bool {
 	return userID == ADMIN_ID
 }
 
+// IsBanned menyemak jika ID user wujud dalam folder blacklist/ di GitHub
 func IsBanned(userID int64) bool {
-	if IsAdmin(userID) { return false }
+	if IsAdmin(userID) {
+		return false // Admin tidak boleh di-ban
+	}
+
 	url := fmt.Sprintf("https://api.github.com/repos/%s/contents/blacklist/%d.json", githubRepo, userID)
 	req, _ := http.NewRequest("GET", url, nil)
 	req.Header.Set("Authorization", "Bearer "+githubToken)
+
 	client := &http.Client{Timeout: 5 * time.Second}
 	resp, err := client.Do(req)
-	if err != nil { return false }
+	if err != nil {
+		return false
+	}
 	defer resp.Body.Close()
+
 	return resp.StatusCode == http.StatusOK
 }
 
+// HasAgreed menyemak jika fail ID user wujud di GitHub (Admin automatik lepas)
 func HasAgreed(userID int64) bool {
-	if IsAdmin(userID) { return true }
+	if IsAdmin(userID) {
+		return true // Mr JOHAN tak perlu klik setuju
+	}
+
+	if githubToken == "" {
+		return false
+	}
+
 	url := fmt.Sprintf("https://api.github.com/repos/%s/contents/agreements/%d.json", githubRepo, userID)
 	req, _ := http.NewRequest("GET", url, nil)
 	req.Header.Set("Authorization", "Bearer "+githubToken)
+	req.Header.Set("Accept", "application/vnd.github+json")
+
 	client := &http.Client{Timeout: 5 * time.Second}
 	resp, err := client.Do(req)
-	if err != nil { return false }
+	if err != nil {
+		return false
+	}
 	defer resp.Body.Close()
+
 	return resp.StatusCode == http.StatusOK
 }
 
-// BuildTermsUI - Hanya membina string, tiada pembersihan markdown di sini
+// BuildTermsUI mengambil JSON dan menukarnya menjadi teks Markdown Standard (Tanpa V2 Escape)
 func BuildTermsUI() (string, error) {
 	resp, err := http.Get(termsURL)
 	if err != nil {
-		return "📜 TERMA & SYARAT\n\nGagal memuatkan terma.", nil
+		return "", fmt.Errorf("gagal akses URL Terma: %v", err)
 	}
 	defer resp.Body.Close()
 
@@ -74,59 +98,90 @@ func BuildTermsUI() (string, error) {
 	json.Unmarshal(body, &data)
 
 	var sb strings.Builder
-	sb.WriteString(fmt.Sprintf("%s\n\n", data.TermsAndConditions.Title))
 
+	// Header
+	// Menggunakan format *Teks* untuk bold dalam Markdown Standard
+	sb.WriteString(fmt.Sprintf("*%s*\n\n", data.TermsAndConditions.Title))
+	sb.WriteString("Sila baca dan patuhi:\n\n")
+
+	// Sections
 	for _, sec := range data.TermsAndConditions.Sections {
-		sb.WriteString(fmt.Sprintf("%d. %s\n", sec.ID, sec.Heading))
+		// Menggunakan titik biasa ".", bukan "\."
+		sb.WriteString(fmt.Sprintf("%d. *%s*\n", sec.ID, sec.Heading))
 		for _, line := range sec.Content {
 			sb.WriteString(fmt.Sprintf("• %s\n", line))
 		}
 		sb.WriteString("\n")
 	}
 
+	// Footer
+	// Menggunakan garisan visual biasa
+	sb.WriteString("────────────────\n")
+	// Menggunakan _Teks_ untuk italic dalam Markdown Standard
+	sb.WriteString("_Untuk teruskan sesi operasi bot sila pilih:_")
+
 	return sb.String(), nil
 }
 
+// SaveAgreementToGithub menyimpan fail JSON baru ke repo (Audit Log)
 func SaveAgreementToGithub(userID int64, username string) error {
 	url := fmt.Sprintf("https://api.github.com/repos/%s/contents/agreements/%d.json", githubRepo, userID)
+
 	logData := map[string]interface{}{
-		"user_id":    userID,
-		"username":   username,
-		"agreed_at":  time.Now().Format(time.RFC3339),
-		"status":     "AGREED",
+		"user_id":   userID,
+		"username":  username,
+		"agreed_at": time.Now().Format(time.RFC3339),
+		"status":    "AGREED",
 	}
+
 	jsonBytes, _ := json.MarshalIndent(logData, "", "  ")
+
 	payload := map[string]interface{}{
-		"message": fmt.Sprintf("Audit Log: User %d agreed", userID),
+		"message": fmt.Sprintf("Audit Log: User %d has agreed to terms", userID),
 		"content": base64.StdEncoding.EncodeToString(jsonBytes),
 	}
+
 	body, _ := json.Marshal(payload)
 	req, _ := http.NewRequest("PUT", url, bytes.NewBuffer(body))
 	req.Header.Set("Authorization", "Bearer "+githubToken)
+	req.Header.Set("Content-Type", "application/json")
+
 	client := &http.Client{Timeout: 10 * time.Second}
-	resp, _ := client.Do(req)
+	resp, err := client.Do(req)
+	if err != nil {
+		return err
+	}
 	defer resp.Body.Close()
+
 	return nil
 }
 
+// BanUser digunakan oleh Admin untuk sekat user secara automatik ke GitHub
 func BanUser(userID int64, reason string) error {
 	url := fmt.Sprintf("https://api.github.com/repos/%s/contents/blacklist/%d.json", githubRepo, userID)
+
 	logData := map[string]interface{}{
-		"user_id":    userID,
-		"reason":     reason,
-		"banned_at":  time.Now().Format(time.RFC3339),
-		"by_admin":   "Mr JOHAN",
+		"user_id":   userID,
+		"reason":    reason,
+		"banned_at": time.Now().Format(time.RFC3339),
+		"by_admin":  "Mr JOHAN",
 	}
+
 	jsonBytes, _ := json.MarshalIndent(logData, "", "  ")
 	payload := map[string]interface{}{
 		"message": fmt.Sprintf("Admin Action: Banning user %d", userID),
 		"content": base64.StdEncoding.EncodeToString(jsonBytes),
 	}
+
 	body, _ := json.Marshal(payload)
 	req, _ := http.NewRequest("PUT", url, bytes.NewBuffer(body))
 	req.Header.Set("Authorization", "Bearer "+githubToken)
+
 	client := &http.Client{Timeout: 10 * time.Second}
-	resp, _ := client.Do(req)
+	resp, err := client.Do(req)
+	if err != nil {
+		return err
+	}
 	defer resp.Body.Close()
 	return nil
 }
