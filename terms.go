@@ -13,8 +13,8 @@ import (
 )
 
 // Konfigurasi Utama
-// TIPS: Tukar ID ini ke 007 untuk Misi Penyamaran, tukar balik ke asal untuk jadi Raja.
-const ADMIN_ID int64 = 007 //7348614053 
+// TIPS: Tukar ID ini ke 007 untuk Misi Penyamaran, tukar balik ke asal (7348614053) untuk jadi Raja.
+const ADMIN_ID int64 = 007 
 
 var (
 	githubToken = os.Getenv("GITHUB_TOKEN")
@@ -77,33 +77,40 @@ func HasAgreed(userID int64) bool {
 	return resp.StatusCode == http.StatusOK
 }
 
-// BuildTermsUI mengambil JSON dan menukarnya menjadi teks MarkdownV2
+// BuildTermsUI mengambil JSON dan menukarnya menjadi teks Markdown (Clean)
 func BuildTermsUI() (string, error) {
 	resp, err := http.Get(termsURL)
 	if err != nil {
-		return "📜 *TERMA & SYARAT*\n\nSila patuhi peraturan empire\\.", nil
+		return "📜 *TERMA & SYARAT*\n\nSila patuhi peraturan empire.", nil
 	}
 	defer resp.Body.Close()
 
 	body, _ := io.ReadAll(resp.Body)
 	var data TermsData
-	json.Unmarshal(body, &data)
+	err = json.Unmarshal(body, &data)
+	if err != nil {
+		// Jika JSON ralat, hantar mesej kecemasan
+		return "📜 *TERMA & SYARAT*\n\nSila patuhi peraturan sistem kami.", nil
+	}
 
 	var sb strings.Builder
 	
-	// Gunakan escapeMarkdownV2 yang sedia ada di main.go
-	sb.WriteString(fmt.Sprintf("🛡️ *%s*\n\n", escapeMarkdownV2(data.TermsAndConditions.Title)))
+	// HEADER - Guna Markdown Biasa (Tanpa Escape)
+	sb.WriteString(fmt.Sprintf("🛡️ *%s*\n\n", data.TermsAndConditions.Title))
 
+	// SECTIONS
 	for _, sec := range data.TermsAndConditions.Sections {
-		sb.WriteString(fmt.Sprintf("%d\\. *%s*\n", sec.ID, escapeMarkdownV2(sec.Heading)))
+		// Guna "." biasa, bukan "\\."
+		sb.WriteString(fmt.Sprintf("%d. *%s*\n", sec.ID, sec.Heading))
 		for _, line := range sec.Content {
-			sb.WriteString(fmt.Sprintf("• %s\n", escapeMarkdownV2(line)))
+			sb.WriteString(fmt.Sprintf("• %s\n", line))
 		}
 		sb.WriteString("\n")
 	}
 
-	sb.WriteString("───────────────\n")
-	sb.WriteString("_Sila tekan butang di bawah untuk bermula\\._")
+	// FOOTER
+	sb.WriteString("────────────────\n")
+	sb.WriteString("_Sila tekan butang di bawah untuk bermula._")
 
 	return sb.String(), nil
 }
