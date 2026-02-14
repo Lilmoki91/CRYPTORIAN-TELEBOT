@@ -1,0 +1,56 @@
+{
+  "project_name": "CRYPTORIAN-TELEBOT",
+  "version": "1.0.0",
+  "last_updated": "2026-02-14",
+  "terms_and_conditions": {
+    "title": "⚖️ TERMA & SYARAT PENGGUNAAN",
+    "intro": "Dengan menggunakan CRYPTORIAN-TELEBOT, anda dianggap telah membaca dan bersetuju dengan terma berikut:",
+    "sections": [
+      {
+        "id": 1,
+        "heading": "TUJUAN SISTEM",
+        "content": [
+          "Bot ini adalah alat bantuan pengurusan rujukan (referral) dan tuntutan ganjaran Worldcoin secara sukarela.",
+          "Kami bukan wakil rasmi syarikat Worldcoin atau mana-mana badan kewangan."
+        ]
+      },
+      {
+        "id": 2,
+        "heading": "BUKAN NASIHAT KEWANGAN",
+        "content": [
+          "Segala maklumat dalam bot ini bersifat pendidikan sahaja.",
+          "Kami tidak bertanggungjawab atas sebarang keputusan pelaburan atau kerugian nilai aset digital anda."
+        ]
+      },
+      {
+        "id": 3,
+        "heading": "INTEGRITI & ANTI-PENIPUAN",
+        "content": [
+          "Sebarang cubaan memanipulasi sistem rujukan menggunakan akaun palsu (sybil attack) atau bot luaran akan disekat serta-merta.",
+          "Ganjaran hanya akan diproses bagi penyertaan yang sah mengikut syarat sistem."
+        ]
+      },
+      {
+        "id": 4,
+        "heading": "KESELAMATAN DATA & AKAUN",
+        "content": [
+          "Kami tidak akan pernah meminta kata laluan, private key, atau seed phrase anda.",
+          "Anda bertanggungjawab sepenuhnya untuk menjaga keselamatan akaun Telegram dan aplikasi World App anda sendiri."
+        ]
+      },
+      {
+        "id": 5,
+        "heading": "HAD LIABILITI",
+        "content": [
+          "Pembangun tidak bertanggungjawab atas kegagalan teknikal, ralat transaksi pada rangkaian blockchain, atau perubahan polisi pihak ketiga yang menjejaskan ganjaran."
+        ]
+      }
+    ],
+    "footer": "Sertai dengan bijak, fahami risiko anda.",
+    "copyright": "© 2026 Cryptorian World MY"
+  },
+  "integrity_check": {
+    "hash_algorithm": "SHA-256",
+    "signature": "EB85A5B4DC97DFDF147081E28AE7608A309584726CE0471132AF140781555B44"
+  }
+}
