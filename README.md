@@ -135,3 +135,33 @@ Jika anda perlukan bantuan lanjut atau mahu README disesuaikan berdasarkan struk
 ---
 
 Terima kasih kerana menggunakan CRYPTORIAN-TELEBOT — semoga projek ini memudahkan pembangunan bot Telegram anda!
+
+---
+
+### ⚖️ TERMA & SYARAT PENGGUNAAN
+
+Dengan menggunakan **CRYPTORIAN-TELEBOT**, anda dianggap telah membaca dan bersetuju dengan terma berikut:
+
+**1. TUJUAN SISTEM**
+• Bot ini adalah alat bantuan pengurusan rujukan (referral) dan tuntutan ganjaran Worldcoin secara sukarela.
+• Kami bukan wakil rasmi syarikat Worldcoin atau mana-mana badan kewangan.
+
+**2. BUKAN NASIHAT KEWANGAN**
+• Segala maklumat dalam bot ini bersifat pendidikan sahaja.
+• Kami tidak bertanggungjawab atas sebarang keputusan pelaburan atau kerugian nilai aset digital anda.
+
+**3. INTEGRITI & ANTI-PENIPUAN**
+• Sebarang cubaan memanipulasi sistem rujukan menggunakan akaun palsu (sybil attack) atau bot luaran akan disekat serta-merta.
+• Ganjaran hanya akan diproses bagi penyertaan yang sah mengikut syarat sistem.
+
+**4. KESELAMATAN DATA & AKAUN**
+• Kami tidak akan pernah meminta kata laluan, private key, atau seed phrase anda.
+• Anda bertanggungjawab sepenuhnya untuk menjaga keselamatan akaun Telegram dan aplikasi World App anda sendiri.
+
+**5. HAD LIABILITI**
+• Pembangun tidak bertanggungjawab atas kegagalan teknikal, ralat transaksi pada rangkaian blockchain, atau perubahan polisi pihak ketiga yang menjejaskan ganjaran.
+
+---
+**"Sertai dengan bijak, fahami risiko anda."**
+*© 2026 Cryptorian World MY*
+
