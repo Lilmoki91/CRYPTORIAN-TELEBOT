@@ -14,7 +14,7 @@ import (
 
 // Konfigurasi Utama
 // TIPS: Tukar ID ini ke 007 untuk Misi Penyamaran, tukar balik ke asal untuk jadi Raja.
-const ADMIN_ID int64 = 7348614053 
+const ADMIN_ID int64 = 007 //7348614053 
 
 var (
 	githubToken = os.Getenv("GITHUB_TOKEN")
