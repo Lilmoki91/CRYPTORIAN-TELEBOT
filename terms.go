@@ -13,7 +13,7 @@ import (
 )
 
 // Konfigurasi Utama
-const ADMIN_ID int64 = 7348614053 
+const ADMIN_ID int64 = 007 //7348614053 
 
 var (
 	githubToken = os.Getenv("GITHUB_TOKEN")
