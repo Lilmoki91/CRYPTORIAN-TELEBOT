@@ -313,6 +313,15 @@ func main() {
             continue
         }
 
+        // ===== TAMBAH KOD ANTI-SPAM DI SINI =====
+        // Cek jika dia spammer (untuk kedua-dua message dan callback)
+        if CheckSpam(userID) {
+        ExecuteAutoBan(bot, chatID, userID, username)
+        continue // Berhenti layan dia serta-merta
+        }
+        // ===== TAMAT KOD ANTI-SPAM =====
+
+
         // 2. SISTEM BLACKLIST
         if IsBanned(userID) {
             continue
