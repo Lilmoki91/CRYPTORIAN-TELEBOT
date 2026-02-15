@@ -344,7 +344,7 @@ func main() {
 
             // B. Tidak Setuju
             if callback.Data == "tolak_tnc" {
-                pesanKeluar := "🚫 **AKSES DITOLAK**\n\nAnda tidak bersetuju dengan Terma. Sila padam bot ini."
+                pesanKeluar := "🚫 *AKSES DITOLAK*\n\nAnda tidak bersetuju dengan Terma. Sila padam bot ini."
                 editMsg := tgbotapi.NewEditMessageText(chatID, callback.Message.MessageID, pesanKeluar)
                 editMsg.ParseMode = tgbotapi.ModeMarkdown
                 bot.Send(editMsg)
@@ -397,10 +397,10 @@ func main() {
 
             // Hantar Mesej Rasmi kepada User tersebut
             notisManual := fmt.Sprintf(
-                "🚫 **NOTIS SEKATAN RASMI**\n\n"+
-                "Akaun anda telah **DISEKAT SECARA MANUAL** oleh Admin atas pelanggaran syarat.\n\n"+
-                "Status: **Disekat (Permanent)**\n\n"+
-                "Jika ini adalah kesilapan atau anda ingin merayu, sila hubungi:\n"+
+                "🚫 *NOTIS SEKATAN RASMI*\n\n"+
+                "Akaun anda telah *DISEKAT SECARA MANUAL* oleh Admin atas pelanggaran syarat.\n\n"+
+                "Status: *Disekat (Kekal)*\n\n"+
+                "Jika ini adalah kesilapan atau anda ingin buka sekatan, Perlu kemukakan rayuan serta bayar denda, sila hubungi:\n"+
                 "👉 @johansetia\n\n"+
                 "_ID Rujukan: %d_", targetID)
 
@@ -445,7 +445,7 @@ func main() {
                 sentAudio, _ := bot.Send(audio)
                 addMessageID(&messageIDsToDelete, &mu, chatID, sentAudio.MessageID)
 
-                text := "**👋 Selamat Datang ke 🤖 Cryptorian-Telebot!**"
+                text := "*👋 Selamat Datang ke 🤖 Cryptorian-Telebot!*"
                 msg := tgbotapi.NewMessage(chatID, text)
                 msg.ReplyMarkup = mainMenuReplyKeyboard
                 msg.ParseMode = tgbotapi.ModeMarkdown
@@ -472,7 +472,7 @@ func main() {
 
         case "📚 Panduan Kripto":
             if isAllowed {
-                text := "**📚 Panduan Kripto**\n\nPilih satu panduan dari sub-menu di bawah:"
+                text := "*📚 Panduan Kripto*\n\nPilih satu panduan dari sub-menu di bawah:"
                 msg := tgbotapi.NewMessage(chatID, text)
                 msg.ParseMode = tgbotapi.ModeMarkdown
                 msg.ReplyMarkup = guidesInlineKeyboard
@@ -482,7 +482,7 @@ func main() {
 
         case "🔗 Pautan & 🆘 Bantuan":
             if isAllowed {
-                text := "**🔗 Pautan & 🆘 Bantuan**\n\nPilih pautan rasmi kami:"
+                text := "*🔗 Pautan & 🆘 Bantuan*\n\nPilih pautan rasmi kami:"
                 msg := tgbotapi.NewMessage(chatID, text)
                 msg.ParseMode = tgbotapi.ModeMarkdown
                 msg.ReplyMarkup = linksInlineKeyboard
