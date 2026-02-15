@@ -122,7 +122,7 @@ func BuildTermsUI() (string, error) {
 
 	// Footer
 	// Menggunakan garisan visual biasa
-	sb.WriteString("─────────────────\n\n")
+	sb.WriteString("─────────────────────────\n\n")
 	// Menggunakan _Teks_ untuk italic dalam Markdown Standard
 	sb.WriteString("_Untuk teruskan sesi operasi bot sila pilih:_")
 
