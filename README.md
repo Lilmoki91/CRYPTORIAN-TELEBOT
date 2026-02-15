@@ -143,7 +143,7 @@ Terima kasih kerana menggunakan CRYPTORIAN-TELEBOT — semoga projek ini memudah
 Dengan menggunakan **CRYPTORIAN-TELEBOT**, anda dianggap telah membaca dan bersetuju dengan terma berikut:
 
 **1. TUJUAN SISTEM**
-• Bot ini adalah alat bantuan pengurusan rujukan (referral) dan tuntutan ganjaran Worldcoin secara sukarela.
+• Bot ini adalah alat bantuan pengurusan rujukan (referral) dan tuntutan ganjaran Worldcoin secara sukarela.\n
 • Kami bukan wakil rasmi syarikat Worldcoin atau mana-mana badan kewangan.
 
 **2. BUKAN NASIHAT KEWANGAN**
