@@ -156,7 +156,7 @@ func addMessageID(messageIDs *map[int64][]int, mu *sync.Mutex, chatID int64, mes
 // sendDetailedGuide - VERSI BAHARU dengan Markdown berfungsi sepenuhnya
 func sendDetailedGuide(bot *tgbotapi.BotAPI, chatID int64, guide Guide, messageIDs *map[int64][]int, mu *sync.Mutex) {
     // Hantar tajuk utama
-    titleMsg := tgbotapi.NewMessage(chatID, fmt.Sprintf("**%s**", guide.Title))
+    titleMsg := tgbotapi.NewMessage(chatID, fmt.Sprintf("*%s*", guide.Title))
     titleMsg.ParseMode = tgbotapi.ModeMarkdown
     if sentMsg, err := bot.Send(titleMsg); err == nil {
         addMessageID(messageIDs, mu, chatID, sentMsg.MessageID)
@@ -167,7 +167,7 @@ func sendDetailedGuide(bot *tgbotapi.BotAPI, chatID int64, guide Guide, messageI
     for _, step := range guide.Steps {
         // 1. Hantar TEKS dengan Markdown penuh (Bold, Italic, Link, Code akan berfungsi)
         var textBuilder strings.Builder
-        textBuilder.WriteString(fmt.Sprintf("**%s**\n\n", step.Title))
+        textBuilder.WriteString(fmt.Sprintf("*%s*\n\n", step.Title))
         textBuilder.WriteString(step.Desc)
         
         textMsg := tgbotapi.NewMessage(chatID, textBuilder.String())
@@ -199,7 +199,7 @@ func sendDetailedGuide(bot *tgbotapi.BotAPI, chatID int64, guide Guide, messageI
     // Hantar nota penting
     if len(guide.Important.Notes) > 0 {
         var notesBuilder strings.Builder
-        notesBuilder.WriteString(fmt.Sprintf("\n**%s**\n", guide.Important.Title))
+        notesBuilder.WriteString(fmt.Sprintf("\n*%s*\n", guide.Important.Title))
         for _, note := range guide.Important.Notes {
             notesBuilder.WriteString(fmt.Sprintf("%s\n", note))
         }
@@ -217,7 +217,7 @@ func sendDetailedGuide(bot *tgbotapi.BotAPI, chatID int64, guide Guide, messageI
 // sendInfographicGuide - VERSI BAHARU dengan Markdown berfungsi
 func sendInfographicGuide(bot *tgbotapi.BotAPI, chatID int64, guide InfographicGuide, messageIDs *map[int64][]int, mu *sync.Mutex) {
     // Hantar tajuk
-    titleMsg := tgbotapi.NewMessage(chatID, fmt.Sprintf("**%s**", guide.Title))
+    titleMsg := tgbotapi.NewMessage(chatID, fmt.Sprintf("*%s*", guide.Title))
     titleMsg.ParseMode = tgbotapi.ModeMarkdown
     if sentMsg, err := bot.Send(titleMsg); err == nil {
         addMessageID(messageIDs, mu, chatID, sentMsg.MessageID)
@@ -239,7 +239,7 @@ func sendInfographicGuide(bot *tgbotapi.BotAPI, chatID int64, guide InfographicG
     for _, step := range guide.Steps {
         // Bina kapsyen dengan Markdown
         var caption strings.Builder
-        caption.WriteString(fmt.Sprintf("**%s**\n\n", step.Step))
+        caption.WriteString(fmt.Sprintf("*%s*\n\n", step.Step))
         for _, detail := range step.Details {
             caption.WriteString(fmt.Sprintf("%s\n", detail))
         }
@@ -445,7 +445,7 @@ func main() {
                 sentAudio, _ := bot.Send(audio)
                 addMessageID(&messageIDsToDelete, &mu, chatID, sentAudio.MessageID)
 
-                text := "👋 Selamat Datang ke 🤖 Cryptorian-Telebot!"
+                text := "**👋 Selamat Datang ke 🤖 Cryptorian-Telebot!**"
                 msg := tgbotapi.NewMessage(chatID, text)
                 msg.ReplyMarkup = mainMenuReplyKeyboard
                 msg.ParseMode = tgbotapi.ModeMarkdown
