@@ -96,7 +96,7 @@ var linksInlineKeyboard = tgbotapi.NewInlineKeyboardMarkup(
         tgbotapi.NewInlineKeyboardButtonURL("🆘 Hubungi Admin", "https://t.me/johansetia"),
     ),
     tgbotapi.NewInlineKeyboardRow(
-        tgbotapi.NewInlineKeyboardButtonURL("🌐 Website Cryptorian", "https://lilmoki91.github.io/Cryptorian-World-My/index.html#guides"),
+        tgbotapi.NewInlineKeyboardButtonURL("🌐 Website Cryptorian", "https://lilmoki91.github.io/Cryptorian-World-My/index.html"),
         tgbotapi.NewInlineKeyboardButtonData("« Tutup Menu Ini", "close_menu"),
     ),
 )
@@ -390,7 +390,7 @@ if HasAgreed(userID) || IsAdmin(userID) {
         msg := tgbotapi.NewMessage(chatID, 
             "🌐 *Website Cryptorian*\n\n"+
             "Klik link di bawah untuk lawat website kami:\n"+
-            "https://lilmoki91.github.io/Cryptorian-World-My/index.html#guides")
+            "https://lilmoki91.github.io/Cryptorian-World-My/index.html")
         msg.ParseMode = tgbotapi.ModeMarkdown
         bot.Send(msg)
     }
